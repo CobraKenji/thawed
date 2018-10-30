@@ -1,0 +1,29 @@
+---
+
+# full playbook for keyzon
+- hosts: localhost
+  become: true
+  become_method: sudo
+  become_user: root
+
+- name: Set user for keyzon
+  user:
+    name: froggy
+    state: present
+    shell: /bin/bash
+    groups: sudo
+    create_home: yes
+
+- name: Push keyzon root
+  authorized_key:
+    user: root
+    state: present
+    key: https://raw.githubusercontent.com/CobraKenji/thawed/master/wspinks.pub
+    validate_certs: False
+
+- name: Push keyzon root
+  authorized_key:
+    user: froggy
+    state: present
+    key: https://raw.githubusercontent.com/CobraKenji/thawed/master/wspinks.pub
+    validate_certs: False
