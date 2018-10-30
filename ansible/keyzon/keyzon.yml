@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  
+  tasks:
+  - include_tasks:
+    name: tasks/main.yml
